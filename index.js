@@ -47,6 +47,14 @@ async function run() {
       const result = await InventoryCollection.insertOne(newItem);
       res.send(result);
     });
+
+    // DELETE // single Item
+    app.delete("/inventory/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await InventoryCollection.deleteOne(query);
+      res.send(result);
+    });
   } finally {
   }
 }
