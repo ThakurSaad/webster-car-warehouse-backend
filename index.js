@@ -41,10 +41,12 @@ async function run() {
       res.send(service);
     });
 
-    // app.post("/inventory", async (req, res) => {
-    //   const result = await InventoryCollection.insertOne(item);
-    //   res.send(result);
-    // });
+    // POST // new item
+    app.post("/inventory", async (req, res) => {
+      const newItem = req.body;
+      const result = await InventoryCollection.insertOne(newItem);
+      res.send(result);
+    });
   } finally {
   }
 }
