@@ -20,7 +20,7 @@ async function run() {
   try {
     await client.connect();
     const InventoryCollection = client.db("inventory").collection("cars");
-    const myCarsCollection = client.db("inventory").collection("myCars")
+    const myCarsCollection = client.db("inventory").collection("myCars");
     console.log("connected to database");
 
     // GET // Inventory
@@ -75,12 +75,20 @@ async function run() {
     });
 
     //POST // post mycars
-    app.post('/myCars', async (req, res) => {
+    app.post("/myCars", async (req, res) => {
       const newMyCar = req.body;
       const result = await myCarsCollection.insertOne(newMyCar);
       res.send(result);
-    })
+    });
 
+    // GET // my cars
+    app.get("/myCars", async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email };
+      const cursor = myCarsCollection.find(query);
+      const myCars = await cursor.toArray();
+      res.send(myCars);
+    });
   } finally {
   }
 }
