@@ -46,7 +46,7 @@ async function run() {
       res.send(result);
     });
 
-    // DELETE // single Item
+    // DELETE // single car
     app.delete("/inventory/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -89,6 +89,14 @@ async function run() {
       const myCars = await cursor.toArray();
       res.send(myCars);
     });
+
+    // DELETE // single my car
+    app.delete("/myCars/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await myCarsCollection.deleteOne(query);
+      res.send(result);
+    })
   } finally {
   }
 }
