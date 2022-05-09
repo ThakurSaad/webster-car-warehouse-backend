@@ -39,7 +39,7 @@ async function run() {
       res.send(inventory);
     });
 
-    // POST // new item
+    // POST // new Car, new car inventory
     app.post("/inventory", async (req, res) => {
       const newItem = req.body;
       const result = await InventoryCollection.insertOne(newItem);
@@ -74,14 +74,14 @@ async function run() {
       res.send(result);
     });
 
-    //POST // post mycars
+    //POST // post mycars, single car adding
     app.post("/myCars", async (req, res) => {
       const newMyCar = req.body;
       const result = await myCarsCollection.insertOne(newMyCar);
       res.send(result);
     });
 
-    // GET // my cars
+    // GET // my cars user(email) based
     app.get("/myCars", async (req, res) => {
       const email = req.query.email;
       const query = { email: email };
