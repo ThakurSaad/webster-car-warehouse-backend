@@ -2,6 +2,7 @@
 - express
 - cors
 - mongodb
+- dotenv
 
 ### middleware
 - `app.use(cors());`
