@@ -8,5 +8,5 @@
 - `app.use(cors());`
 - `app.use(express.json());`
 
-### project hosting
+### hosting
 - hosted on heroku
